@@ -1,0 +1,31 @@
+{
+  "name": "torrents-app",
+  "version": "1.0.0",
+  "description": "Simple application to download torrents.",
+  "main": "server.js",
+  "author": "Maaxow",
+  "dependencies": {
+    "body-parser": "^1.4.3",
+    "express": "^4.13.4",
+    "json-stringify-safe": "^5.0.1",
+    "method-override": "^2.1.3",
+    "mongoose": "^4.4.12",
+    "morgan": "^1.1.1",
+    "socket.io": "^1.7.2",
+    "webtorrent": "^0.98.0"
+  },
+  "scripts": {
+    "mongo": "start mongod",
+    "prestart": "sh checkMongo.sh",
+    "start": "node server.js",
+    "build": "bower install"
+  },
+  "directories": {
+    "lib": "/public/vendor"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "http://github.com"
+  }
+}
