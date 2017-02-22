@@ -1,5 +1,5 @@
 {
-  "name": "torrents-app",
+  "name": "my-personal-seedbox",
   "description": "Simple application to download torrents.",
   "main": "server.js",
   "authors": [

@@ -1,5 +1,5 @@
 {
-  "name": "torrents-app",
+  "name": "my-personal-seedbox",
   "version": "1.0.0",
   "description": "Simple application to download torrents.",
   "main": "server.js",
@@ -20,12 +20,9 @@
     "start": "node server.js",
     "build": "bower install"
   },
-  "directories": {
-    "lib": "/public/vendor"
-  },
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "http://github.com"
+    "url": "http://github.com/maaxow/mypersonalseebox.git"
   }
 }
