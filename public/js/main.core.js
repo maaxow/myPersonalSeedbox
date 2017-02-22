@@ -16,22 +16,22 @@ define(function(require){
     $stateProvider
     .state('home', {
       url: "/",
-      templateUrl: 'home.html',
+      templateUrl: 'views/home.html',
       controller: 'mainController'
     })
     .state('downloads', {
       url: "/downloads",
-      templateUrl: 'downloads.html',
+      templateUrl: 'views/downloads.html',
       controller: 'downloadController'
     })
     .state('seeders', {
       url: "/seeders",
-      templateUrl: 'seeders.html',
+      templateUrl: 'views/seeders.html',
       controller: 'seederController'
     })
     .state('files', {
       url: "/files",
-      templateUrl: 'files.html',
+      templateUrl: 'views/files.html',
       controller: 'fileController'
     })
 

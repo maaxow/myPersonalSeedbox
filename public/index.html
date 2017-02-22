@@ -1,32 +1,21 @@
 <!doctype html>
-
-<!-- ASSIGN OUR ANGULAR MODULE -->
 <html>
 <head>
-	<!-- META -->
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1"><!-- Optimize mobile viewport -->
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<title>Torrents</title>
 
-	<!-- SCROLLS -->
 	<link rel="stylesheet" href="vendor/angular-material/angular-material.min.css">
 	<link rel="stylesheet" href="vendor/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="vendor/font-awesome//css/font-awesome.min.css">
 	<style>
-		html 					{ overflow-y:scroll; }
+		html { overflow-y:scroll; }
 	</style>
 
-	<!-- SPELLS -->
-	<script src="vendor/jquery/dist/jquery.min.js"></script><!-- load angular -->
+	<script src="vendor/jquery/dist/jquery.min.js"></script>
 	<script src="/socket.io/socket.io.js"></script>
-	<script data-main="js/require.config.js" src="vendor/requirejs/require.js"></script><!-- load angular -->
-
-	<!-- <script src="js/controllers/todoController.js"></script> <!-- load up our controller -->
-	<!-- <script src="js/controllers/torrentController.js"></script> <!-- load up our controller -->
-	<!-- <script src="js/services/todos.js"></script> <!-- load our todo service -->
-	<!-- <script src="js/services/torrents.js"></script> <!-- load our todo service -->
-	<!-- <script src="js/core.js"></script> <!-- load our main application -->
+	<script data-main="js/require.config.js" src="vendor/requirejs/require.js"></script>
 
 	<base href="/"/>
 </head>
@@ -46,9 +35,7 @@
 				<span> Files </span>
 			</md-button>
 		</md-toolbar>
-		<!--Note: for scrollShrink to work, the toolbar must be a sibling of a md-content element, placed before it.-->
 		<md-content layout-padding layout-wrap>
-		<!-- <md-button class="md-raised md-primary" ui-sref="home" aria-label="home">Home</md-button> -->
 			<div ui-view></div>
 		</md-content>
 	</div>
