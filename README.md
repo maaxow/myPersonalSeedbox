@@ -1,2 +1,4 @@
 # myPersonalSeedbox
-my personal seedbox
+
+
+App using Angular Mongo and WebTorrent
