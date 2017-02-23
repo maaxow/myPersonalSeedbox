@@ -31,14 +31,12 @@ define(function(require){
 		// when submitting the add form, send the text to the node API
 		$scope.createTorrents = function() {
 
-			console.log('createTorrent', $scope.formData);
 			// validate the formData to make sure that something is there
 			// if form is empty, nothing will happen
 			if ($scope.formData.name != undefined && $scope.formData.url !== undefined) {
-				console.log('send data to service $torrent', $scope.formData);
 				// call the create function from our service (returns a promise object)
 				$torrents.create($scope.formData).then(function(){
-					console.log("on a creer le torrent, on update la liste");
+					console.log("on a fini de creer le torrent, on update la liste");
 					updateListTorrent();
 				});
 
@@ -50,6 +48,10 @@ define(function(require){
 			}
 		};
 
+		socket.emit('getTorrent');
+		socket.on('gettedTorrent', function(torrents){
+			console.log("torrents", torrents);
+		})
 		socket.on('downloading', function(data){
 			console.log("recup downloding..", data);
 		});

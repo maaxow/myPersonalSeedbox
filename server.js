@@ -7,6 +7,8 @@ var database = require('./config/database'); 			// load the database config
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
+var WebTorrent = require('webtorrent');
+var client = new WebTorrent();
 
 
 // configuration ===============================================================
@@ -23,7 +25,7 @@ app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-M
 
 
 // routes ======================================================================
-require('./app/routes.js')(app);
+require('./app/routes.js')(app, client);
 var server = require('http').createServer(app);
 var io = require('socket.io');
 
@@ -32,6 +34,6 @@ var io = require('socket.io');
 server.listen(port);
 io = io(server);
 var socketConfig = require('./app/socket.io.config.js');
-socketConfig(io);
+socketConfig(io, client);
 
 console.log("App listening on port " + port);

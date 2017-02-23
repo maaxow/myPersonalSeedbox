@@ -1,3 +1,3 @@
 module.exports = {
-  downloadUrl: 'C:\\.torrents\\files'
+  downloadUrl: '/.torrents/files'
 };

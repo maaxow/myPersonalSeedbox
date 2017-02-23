@@ -22,6 +22,7 @@ define(function(require){
             $scope.$emit('updateListTorrents');
           });
         };
+
       }
     }
   });

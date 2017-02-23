@@ -60,7 +60,7 @@ require.config({
 	}
 });
 
-requirejs(['core'], function(app) {
+requirejs(['main.core'], function(app) {
   app.init();
 });
 

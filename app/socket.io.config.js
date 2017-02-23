@@ -1,25 +1,24 @@
-var WebTorrent = require('webtorrent');
 var constants = require('../config/constants');
 // var stringify = require('json-stringify-safe');
 
-module.exports = function(io){
-  var client = new WebTorrent();
-
+module.exports = function(io, client){
+  // var client = new WebTorrent();
   io.on('connection', function(socket){
 
     socket.on('createTorrent', function(data){
-      console.log('adding new torrent ', data.name, 'using torrentId ', data.url);
+      console.log('Socket: receive asking add', data.name);
       // data.path = constants.downloadUrl;
       client.add(data.url, {path: constants.downloadUrl}, function(torrent){
 
-        socket.emit('createdTorrent', torrent.magnetURI);
-        torrent.on('download',function(bytes){
-          // console.log("downloading... ", bytes);
+        var fileList = [];
+        for(var i in torrent.files){
+          fileList.push(torrent.files[i].name)
+        }
           var sended = {
             infoHash : torrent.infoHash,
             magnetURI : torrent.magnetURI,
-            files : torrent.files,
-            torrentFile: torrent.torrentFile,
+            files : fileList,
+            // torrentFile: torrent.torrentFile,
             path: torrent.path,
             timeRemaining: torrent.timeRemaining,
             received: torrent.received,
@@ -31,8 +30,15 @@ module.exports = function(io){
             ration: torrent.ratio,
             numPeers: torrent.numPeers
           };
-          socket.emit('downloading', sended);
-        })
+          console.log('Socket: send createdTorrent');
+          socket.emit('createdTorrent', sended);
+        //   torrent.on('download',function(bytes){
+        //     socket.emit('downloading', sended);
+        // });
+      });
+
+      socket.on('downloading', function(data){
+        console.log("downloading data :", data);
       });
       // var tmpTorrent = torrent;
       // for(var prop in tmpTorrent){
@@ -49,5 +55,17 @@ module.exports = function(io){
       // })
     });
 
+    socket.on('removeTorrent', function(torrentId){
+      client.remove(torrentId, function(err){
+        if(err){
+          console.log('error removing torrent');
+        } else {
+          socket.emit('removedTorrent');
+        }
+      });
+    });
+    socket.on('getTorrent', function(){
+      socket.emit('gettedTorrent', client.torrents);
+    })
   });
 };

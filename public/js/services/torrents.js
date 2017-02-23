@@ -12,13 +12,12 @@ define(function(require){
 			create : function(torrentsData) { // { name : '', url: '' }
 				var defer = $q.defer();
 				if(torrentsData){
-					console.log("client service $torrent: send torrentdata to server ", torrentsData);
+					console.log("Service: asking add to Socket");
 					socket.emit('createTorrent', torrentsData);
 					socket.on('createdTorrent', function(data){
-						console.log("client:torrent.js on createdTorrent", data, torrentsData);
-						torrentsData.torrent = {
-							magnetURI: data
-						};
+						console.log("Service: torrent created ", data);
+						torrentsData.torrent = data;
+						console.log("Service: send ask add to Route");
 						defer.resolve($http.post('/api/torrents', torrentsData));
 					});
 				} else {
@@ -32,6 +31,9 @@ define(function(require){
 				}
 			},
 			delete : function(id) {
+				socket.on('removedTorrent', function(){
+					console.log("torrent removed");
+				})
 				if(id){
 					return $http.delete('/api/torrents/' + id);
 				} else {
