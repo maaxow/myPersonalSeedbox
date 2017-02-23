@@ -15,8 +15,7 @@
     "webtorrent": "^0.98.0"
   },
   "scripts": {
-    "mongo": "start mongod",
-    "prestart": "sh checkMongo.sh",
+    "prestart": "npm install && bower install && sh checkMongo.sh",
     "start": "node server.js",
     "build": "bower install"
   },
