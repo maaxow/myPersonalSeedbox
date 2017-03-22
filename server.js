@@ -2,14 +2,14 @@
 var express = require('express');
 var app = express(); 						// create our app w/ express
 var mongoose = require('mongoose'); 				// mongoose for mongodb
-var port = process.env.PORT || 8080; 				// set the port
+var port = process.env.PORT || 8081; 				// set the port
 var database = require('./config/database'); 			// load the database config
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var WebTorrent = require('webtorrent');
-var client = new WebTorrent();
-
+var nodeId = "mypersonalNode"
+var client = new WebTorrent({nodeId : nodeId});
 
 // configuration ===============================================================
 mongoose.Promise = global.Promise;
@@ -32,8 +32,14 @@ var io = require('socket.io');
 // listen (start app with node server.js) ======================================
 // app.listen(port);
 server.listen(port);
+console.log("server", server);
 io = io(server);
 var socketConfig = require('./app/socket.io.config.js');
 socketConfig(io, client);
 
 console.log("App listening on port " + port);
+
+process.on('SIGINT', function(){
+  if(server) server.close();
+  process.exit();
+});

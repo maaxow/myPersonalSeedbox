@@ -1,7 +1,8 @@
 define(function(require){
 	// var WebTorrent = require('web-torrent');
 	require("angular");
-	var socket = io.connect(location.host);
+	// console.log("location hhost", location);
+	var socket = io.connect(location.host + ':8081');
 	var torrentService = angular.module('app.service.torrents', [])
 
 	.factory('$torrents', ['$http','$q',function($http, $q) {
